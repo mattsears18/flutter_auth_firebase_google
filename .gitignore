@@ -1,0 +1,15 @@
+.DS_Store
+.dart_tool/
+.atom/
+.idea
+.vscode/
+packages
+.flutter-plugins
+.packages
+.pub/
+
+build/
+ios/.generated/
+ios/Flutter/Generated.xcconfig
+ios/Runner/GeneratedPluginRegistrant.*
+
