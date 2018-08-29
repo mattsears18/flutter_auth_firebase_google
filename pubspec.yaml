@@ -1,6 +1,6 @@
 name: flutter_auth_firebase_google
 description: A new flutter package project.
-version: 0.1.0
+version: 0.2.0
 author: Lance Johnstone <flutterlance@outlook.com>
 homepage: https://github.com/aqwert/flutter_auth_firebase_google
 
@@ -9,8 +9,8 @@ dependencies:
     sdk: flutter
   
   google_sign_in: "^3.0.3"
-  flutter_auth_base: "^0.1.5"
-  flutter_auth_firebase: "^0.2.0"
+  flutter_auth_base: "^0.3.1"
+  flutter_auth_firebase: "^0.3.0"
 
 dev_dependencies:
   flutter_test:
