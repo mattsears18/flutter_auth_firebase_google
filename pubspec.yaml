@@ -1,16 +1,22 @@
 name: flutter_auth_firebase_google
 description: A new flutter package project.
-version: 0.2.0
+version: 0.3.0
 author: Lance Johnstone <flutterlance@outlook.com>
 homepage: https://github.com/aqwert/flutter_auth_firebase_google
+
+environment:
+  sdk: '>=2.1.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  google_sign_in: "^3.0.3"
-  flutter_auth_base: "^0.3.1"
-  flutter_auth_firebase: "^0.3.0"
+
+  google_sign_in: ^4.0.6
+  flutter_auth_base: ^0.3.1
+  # flutter_auth_firebase: ^0.4.0
+  flutter_auth_firebase:
+    path: ../flutter_auth_firebase
+  firebase_auth: ^0.13.1+1
 
 dev_dependencies:
   flutter_test:
@@ -21,7 +27,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -32,7 +37,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

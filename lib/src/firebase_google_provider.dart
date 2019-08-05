@@ -10,6 +10,7 @@ import 'package:meta/meta.dart';
 import 'dart:async';
 
 import 'package:flutter_auth_firebase/flutter_auth_firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 
 class FirebaseGoogleProvider extends AuthProvider implements LinkableProvider {
   FirebaseGoogleProvider(
@@ -42,9 +43,19 @@ class FirebaseGoogleProvider extends AuthProvider implements LinkableProvider {
 
     GoogleSignInAuthentication signInAuth = await account.authentication;
 
-    var user = await _service.auth.linkWithGoogleCredential(
-        idToken: signInAuth.idToken, accessToken: signInAuth.accessToken);
-    return _service.authUserChanged.value = new FirebaseUser(user);
+    //TODO need error handling (tests)
+    var user = await _service.auth.currentUser();
+
+    final fb.AuthCredential googleCredential =
+        fb.GoogleAuthProvider.getCredential(
+            idToken: signInAuth.idToken, accessToken: signInAuth.accessToken);
+
+    final fb.AuthResult result =
+        await user.linkWithCredential(googleCredential);
+
+    var newUser = await _service.auth.currentUser();
+
+    return _service.authUserChanged.value = FirebaseUser(newUser);
   }
 
   @override
@@ -56,8 +67,15 @@ class FirebaseGoogleProvider extends AuthProvider implements LinkableProvider {
 
     GoogleSignInAuthentication signInAuth = await account.authentication;
 
-    var user = await _service.auth.signInWithGoogle(
-        idToken: signInAuth.idToken, accessToken: signInAuth.accessToken);
+    // TODO need error handling (testing)
+    final fb.AuthCredential googleCredential =
+        fb.GoogleAuthProvider.getCredential(
+            idToken: signInAuth.idToken, accessToken: signInAuth.accessToken);
+
+    final fb.AuthResult result =
+        await _service.auth.signInWithCredential(googleCredential);
+
+    var user = await _service.auth.currentUser();
 
     // In the case the the user is signin up to google, we need to check that they have or not
     // accepted terms. Since the first time signin and subsequent signin are the same,
